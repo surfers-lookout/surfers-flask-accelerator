@@ -1,0 +1,44 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: surfers-flask-accelerator
+  labels:
+    apps.tanzu.vmware.com/workload-type: web
+    #deployment-model: bluegreen
+    app.kubernetes.io/part-of: surferslookout
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/language: python
+spec:
+  params:
+  #- name: alternateRevision
+  #  value: surfers-flask-accelerator-00001
+  - name: clusterBuilder
+    value: full
+  - name: git_user_email
+    value: gitopsemailaddress
+  - name: git_user_name
+    value: gitopsaccountname
+  - name: annotations
+    value:
+      autoscaling.knative.dev/min-scale: "1"
+      autoscaling.knative.dev/max-scale: "50"
+      autoscaling.knative.dev/scale-down-delay: "2s"
+      autoscaling.knative.dev/initial-scale: "1"
+      autoscaling.knative.dev/window: "10s"
+      autoscaling.knative.dev/target: "40"
+      autoscaling.knative.dev/metric: "rps"
+      autoscaling.knative.dev/target: "60"
+  source:
+    git:
+      url: https://github.com/surfers-lookout/surfers-flask-accelerator
+      ref:
+        branch: main
+  #serviceClaims:
+  #  - name: db
+  #    ref:
+  #      apiVersion: v1
+  #      kind: Secret
+  #      name: surferslookout-db
+  env:
+  - name: COLOR
+    value: blue
