@@ -51,7 +51,7 @@ accelerator:
 engine:
   merge:
   - include: [ "**/*" ]
-    exclude: [ "config/*.yaml", "Tiltfile", "README.md", "catalog/*.yaml" ]
+    exclude: [ "config/*.yaml", "Tiltfile", "README.md", "catalog/*.yaml", "techdocs_publish.sh" ]
 
   - include: [ "Tiltfile" ]
     chain:
@@ -104,3 +104,13 @@ engine:
         with: "#artifactId"
       - text: surfers-flask-accelerator
         with: "#artifactId"
+
+  - include: [ "techdocs_publish.sh" ]
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: surfersflaskaccelerator
+        with: "#artifactId"
+      - text: surfers-flask-accelerator
+        with: "#artifactId"
+

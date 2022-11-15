@@ -4,7 +4,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: surfersflaskaccelerator
-  namespace: alpha
+  namespace: default
   description: Surf Forecast Accelerator
   tags:
     - app-accelerator

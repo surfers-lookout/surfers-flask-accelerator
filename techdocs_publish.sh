@@ -1,8 +1,8 @@
 #! /bin/bash
 # Script to generate and publish techdopcs from current directory to gcs
 
-APPNAME = ''
-NAMESPACE = ''
+APPNAME = 'surfers-flask-accelerator'
+NAMESPACE = 'default'
 
 # This is just an example of how to apply gcs credentials for the document publishing
 export GOOGLE_APPLICATION_CREDENTIALS=~/gcr.json
